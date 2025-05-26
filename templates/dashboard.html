@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <title>Geri Bildirim Paneli</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #1e1f26;
+            color: #f1f1f1;
+            padding: 40px 60px;
+        }
+
+        h2 {
+            font-size: 24px;
+            color: #ffffff;
+            margin-bottom: 10px;
+        }
+
+        h3 {
+            font-size: 20px;
+            margin-top: 40px;
+            margin-bottom: 15px;
+            color: #a3bffa;
+        }
+
+        .logout {
+            float: right;
+            background: #ff4d4d;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: background 0.3s;
+        }
+
+        .logout:hover {
+            background: #e63946;
+        }
+
+        pre {
+            background-color: #2f3042;
+            padding: 15px;
+            border-radius: 8px;
+            color: #f8f9fa;
+            font-size: 14px;
+            overflow-x: auto;
+        }
+
+        ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+
+        li {
+            margin-bottom: 20px;
+        }
+
+        .question-number {
+            font-weight: 600;
+            color: #7fafff;
+            margin-bottom: 5px;
+        }
+
+        hr {
+            border: 0;
+            border-top: 1px solid #444;
+            margin: 30px 0;
+        }
+
+        p {
+            margin-top: 20px;
+            color: #aaa;
+        }
+    </style>
+</head>
+<body>
+    <h2>Merhaba, {{ email }}</h2>
+    <a href="{{ url_for('logout') }}" class="logout">Çıkış Yap</a>
+    <hr>
+    {% if feedbacks %}
+        {% for hafta, sorular in feedbacks.items() %}
+            <h3>{{ hafta }}</h3>
+            <ul>
+                {% for soru_num, geri_bildirim in sorular %}
+                    <li>
+                        <div class="question-number">Soru {{ soru_num }}:</div>
+                        <pre>{{ geri_bildirim }}</pre>
+                    </li>
+                {% endfor %}
+            </ul>
+            <hr>
+        {% endfor %}
+    {% else %}
+        <p>Henüz geri bildiriminiz yok.</p>
+    {% endif %}
+</body>
+</html>

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <title>Yapay Zeka Gelişim Kampı | Giriş</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #1e1f26, #2a2b38);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: #fff;
+        }
+
+        .login-container {
+            background-color: #2f3042;
+            padding: 40px 30px;
+            border-radius: 16px;
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
+            width: 340px;
+            text-align: center;
+        }
+
+        .login-container img {
+            width: 80px;
+            margin-bottom: 20px;
+        }
+
+        .login-container h2 {
+            margin-bottom: 20px;
+            font-size: 24px;
+            color: #ffffff;
+        }
+
+        label {
+            display: block;
+            text-align: left;
+            margin-bottom: 8px;
+            font-size: 14px;
+            color: #ccc;
+        }
+
+        input[type="email"] {
+            width: 100%;
+            padding: 10px 12px;
+            border: none;
+            border-radius: 8px;
+            background-color: #444654;
+            color: white;
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+
+        input[type="email"]::placeholder {
+            color: #bbb;
+        }
+
+        button, .admin-button {
+            width: 100%;
+            padding: 12px;
+            font-size: 15px;
+            font-weight: 600;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: 0.3s;
+            margin-bottom: 10px;
+        }
+
+        button {
+            background: linear-gradient(135deg, #6a11cb, #2575fc);
+            color: white;
+        }
+
+        button:hover {
+            opacity: 0.9;
+        }
+
+        .admin-button {
+            background-color: #555;
+            color: white;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .admin-button:hover {
+            background-color: #777;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <!-- Buraya bir kamp logosu veya yapay zeka simgesi görseli ekleyebilirsin -->
+      <img src="C:\Users\Eren\Desktop\AI Agent\yzttransparan.png" alt="Yzt Transparan Görsel" width="300">
+
+        <h2>Öğrenci Girişi</h2>
+        <form method="post">
+            <label for="email">E-posta adresiniz:</label>
+            <input type="email" name="email" id="email" placeholder="ornek@gmail.com" required>
+            <button type="submit">Giriş Yap</button>
+        </form>
+        <a href="{{ url_for('admin_login') }}" class="admin-button">Görevli Girişi</a>
+    </div>
+</body>
+</html>

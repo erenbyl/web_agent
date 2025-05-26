@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Paneli</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background-color: #fafafa;
+        }
+        h1 {
+            color: #333;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 15px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #007bff;
+            color: white;
+        }
+        .btn {
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 14px;
+            margin-right: 10px;
+        }
+        .btn-delete {
+            background-color: #dc3545;
+            color: white;
+        }
+        .btn-delete:hover {
+            background-color: #b02a37;
+        }
+        .btn-logout {
+            background-color: #6c757d;
+            color: white;
+        }
+        .btn-logout:hover {
+            background-color: #5a6268;
+        }
+        .flash-message {
+            padding: 10px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+        }
+        .flash-success {
+            background-color: #d4edda;
+            color: #155724;
+        }
+        .flash-error {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+    </style>
+</head>
+<body>
+    <h1>Admin Paneli</h1>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        {% for category, message in messages %}
+          <div class="flash-message flash-{{ category }}">
+            {{ message }}
+          </div>
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+
+    <form method="post" onsubmit="return confirm('Tüm kayıtları silmek istediğinize emin misiniz?');">
+        <button type="submit" name="delete_all" class="btn btn-delete">Tüm Kayıtları Sil</button>
+        <a href="{{ url_for('admin_logout') }}" class="btn btn-logout">Çıkış Yap</a>
+    </form>
+
+    <table>
+        <thead>
+            <tr>
+                <th>E-posta</th>
+                <th>Hafta</th>
+                <th>Soru No</th>
+                <th>Geri Bildirim</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for email, week, question_number, feedback in feedbacks %}
+            <tr>
+                <td>{{ email }}</td>
+                <td>{{ week }}</td>
+                <td>{{ question_number }}</td>
+                <td>{{ feedback }}</td>
+            </tr>
+            {% else %}
+            <tr>
+                <td colspan="4" style="text-align:center;">Kayıt bulunamadı.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
